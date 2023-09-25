@@ -23,9 +23,9 @@ namespace API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]//http verbs -> get post delete put
-        public async Task<ActionResult<List<Product>>> GetProducts()
+        public ActionResult<List<Product>> GetProducts()
         {
-            var data = await _context.Products.ToListAsync();
+            var data =  _context.Products.ToList();
             return data;
         }
         /// <summary>
@@ -34,9 +34,9 @@ namespace API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetProduct(int id)
+        public  ActionResult<Product> GetProduct(int id)
         {
-            return await _context.Products.FindAsync(id);
+            return  _context.Products.Find(id);
         }
     }
 }
