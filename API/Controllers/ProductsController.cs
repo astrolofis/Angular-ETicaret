@@ -1,8 +1,9 @@
 ﻿using API.Core.DbModels;
+using API.Core.Interfaces;
 using API.Infrastructure.DataContext;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 
 namespace API.Controllers
 {
@@ -11,19 +12,23 @@ namespace API.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly StoreContext _context;
-        public ProductsController(StoreContext context)
+
+        private readonly IProductRepostitory _productRepository;
+
+        public ProductsController(IProductRepostitory productrepository)
         {
-            _context = context;
+            _productRepository= productrepository;
+            //_context = context;
         }
         /// <summary>
         /// Database'deki verileri çekme.
         /// </summary>
         /// <returns></returns>
         [HttpGet]//http verbs -> get post delete put
-        public ActionResult<List<Product>> GetProducts()
+        public async Task<ActionResult<List<Product>>> GetProducts()
         {
-            var data =  _context.Products.ToList();
-            return data;
+            var data = await _productRepository.GetProductAsync();
+            return Ok(data);
         }
         /// <summary>
         /// Database'deki belirli bir veriyi çekme.
@@ -31,9 +36,28 @@ namespace API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public  ActionResult<Product> GetProduct(int id)
+        public async  Task<ActionResult<Product>> GetProduct(int id)
         {
-            return  _context.Products.Find(id);
+            return await _productRepository.GetProductByIdAsync(id);
+        }
+        /// <summary>
+        /// Database'den brand değerlerini çekme
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("brands")]
+        public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductBrands()
+        {
+            return Ok( await _productRepository.GetProductBrandAsync());
+        }
+
+        /// <summary>
+        /// Database'deki type değerlerini çekme
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("types")]
+        public async Task<ActionResult<IReadOnlyList<ProductType>>> GetProductTypes()
+        {
+            return Ok(await _productRepository.GetProductTypesAsync());
         }
     }
 }
