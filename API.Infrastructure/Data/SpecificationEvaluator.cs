@@ -1,0 +1,30 @@
+﻿using API.Core.DbModels;
+using API.Core.Specifications;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
+
+namespace API.Infrastructure.Data
+{
+    public class SpecificationEvaluator<TEntity> where TEntity : BaseEntity
+    {
+
+        /// <summary>
+        /// 4. bölüm 4. derste yapıldı anlamazsan bak.
+        /// </summary>
+        /// <param name="inputQuery"></param>
+        /// <param name="spec"></param>
+        /// <returns></returns>
+        public static IQueryable<TEntity> GetQuery(IQueryable<TEntity> inputQuery, ISpecification<TEntity> spec)
+        {
+            var query = inputQuery;
+
+            if(spec.Criteria !=null)
+            {
+                query = query.Where(spec.Criteria);
+            }
+
+            query= spec.Includes.Aggregate(query, (current, include) => current.Include(include));
+            return query;
+        }
+    }
+}
