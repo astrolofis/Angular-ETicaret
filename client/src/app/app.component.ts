@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { BasketService } from './basket/basket.service';
 
 @Component({
   selector: 'app-first',
@@ -8,19 +7,19 @@ import { BasketService } from './basket/basket.service';
 })
 export class AppComponent implements OnInit{
   title = 'E-Ticaret';
-    
+  //products! :IProduct[];//!!!!!!!!!  normalde ! olmaması lazım 
+  
 
-constructor (private basketService: BasketService){}
+constructor (){}
 
-ngOnInit():void{
-  const basketId = localStorage.getItem('basket_id');
-  if(basketId){
-    this.basketService.getBasket(basketId).subscribe(()=>{
-      console.log("initiliaze basket");
-    },error=>{
-      console.log(error);
-    });
-  }
+ngOnInit():void{//!!!!!!!!! <IPagination> yok normalde
+//   this.http.get<IPagination>('https://localhost:44373/api/products').subscribe((response:IPagination)=>{
+  
+//   this.products=response.data;
+
+// },error=>{
+//   console.log(error);
+// });
 }
 
 }
