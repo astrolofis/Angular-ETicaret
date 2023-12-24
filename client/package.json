@@ -23,6 +23,10 @@
     "ngx-bootstrap": "^11.0.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+<<<<<<< HEAD
+=======
+    "xng-breadcrumb": "^10.0.1",
+>>>>>>> parent of 0538552 (Hata sebebi ile geri alındı)
     "zone.js": "~0.13.0"
   },
   "devDependencies": {
