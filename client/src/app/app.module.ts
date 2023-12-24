@@ -2,14 +2,10 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 <<<<<<< HEAD
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-<<<<<<< HEAD
 =======
 import {HttpClientModule} from '@angular/common/http';
 
 >>>>>>> parent of 860be9a (Routing işlemleri/ hata ayıklama ve hata mesajları / yükleniyor ekranı / breadCrumb eklendi)
-=======
-
->>>>>>> parent of e6e8d7d (hatalı bölüm)
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,6 +13,7 @@ import { CoreModule } from './core/core.module';
 import { ShopModule } from './shop/shop.module';
 <<<<<<< HEAD
 import { HomeModule } from './home/home.module';
+import { BasketModule } from './basket/basket.module';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
@@ -37,6 +34,7 @@ import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
 <<<<<<< HEAD
     ShopModule,
     HomeModule,
+    BasketModule,
     NgxSpinnerModule 
   ],
   providers: [
