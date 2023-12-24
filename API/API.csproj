@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <Folder Include="Content\" />
+    <Folder Include="NewFolder1\" />
     <Folder Include="NewFolder\" />
   </ItemGroup>
 
